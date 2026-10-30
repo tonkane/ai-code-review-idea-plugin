@@ -1,0 +1,109 @@
+<idea-plugin>
+    <id>com.aicodereview.git</id>
+    <name>tonkane AI Code Review</name>
+    <version>1.1.8</version>
+    <vendor>tonkane</vendor>
+
+    <description><![CDATA[
+        <h3>tonkane AI Code Review</h3>
+        <p><b>English</b></p>
+        <p>Review checked pending changes or a single commit from the Git Log with any OpenAI-compatible
+        chat API (OpenAI, DeepSeek, Qwen, Moonshot, Zhipu, SiliconFlow, Ollama, or a custom gateway).</p>
+        <ul>
+            <li>Review checked files in the Commit tool window, or right-click one commit in Git Log.</li>
+            <li>Fixed four-dimension Markdown template: standards, business logic, performance, and security.</li>
+            <li>Editable prompt, Chinese/English UI and prompt templates, and stable report structure.</li>
+            <li>Configurable endpoint (including port), model, API key, headers, timeout, and output file.</li>
+            <li>Local review history, clickable findings, and automatic report reload.</li>
+            <li>API keys are stored in the IDE credential store, not in plugin settings XML.</li>
+        </ul>
+        <p><b>中文</b></p>
+        <p>使用任意 OpenAI 兼容接口，审查 Git 待提交区中勾选的更改，或 Git 历史记录中选中的单次提交
+        （支持 OpenAI、DeepSeek、通义千问、Moonshot、智谱、SiliconFlow、Ollama 及自定义网关）。</p>
+        <ul>
+            <li>在 Commit 工具窗勾选文件审查，或在 Git Log 中右键单条提交审查。</li>
+            <li>固定四维 Markdown 模板：标准规范、业务逻辑、性能、安全。</li>
+            <li>提示词可编辑，支持中英文界面与默认模板，报告结构稳定。</li>
+            <li>可配置接口地址（含端口）、模型、API Key、请求头、超时和输出文件。</li>
+            <li>本地审查历史、可点击的问题定位、报告自动重新加载。</li>
+            <li>API Key 保存在 IDE 凭据库，不写入插件设置 XML。</li>
+        </ul>
+        <p><i>Data note: only the selected diff and prompt are sent to the endpoint you configure.
+        The plugin itself does not collect telemetry.<br/>
+        数据说明：仅将选中的 diff 和提示词发送到您配置的接口；插件本身不收集遥测数据。</i></p>
+    ]]></description>
+
+    <change-notes><![CDATA[
+        <ul>
+            <li>1.1.8: Rename the product and vendor to tonkane.<br/>
+                中文：产品与厂商名称更新为 tonkane。</li>
+            <li>1.1.7: Maintenance release; no functional changes.<br/>
+                中文：维护版本，无功能变更。</li>
+            <li>1.1.1: Keep the review/history actions in the bottom commit action bar only.<br/>
+                中文：审查/历史操作仅保留在底部提交操作栏。</li>
+            <li>1.1.0: Add Chinese/English UI and prompt templates, Git Log commit review, local review history,
+                and clickable finding navigation.<br/>
+                中文：新增中英文界面与提示词模板、Git Log 提交审查、本地审查历史和可点击的问题定位。</li>
+            <li>1.0.3: Reload an already-open CODE_REVIEW.md after each review.<br/>
+                中文：每次审查后自动重新加载已打开的 CODE_REVIEW.md。</li>
+            <li>1.0.2: Fix the connection test status getting stuck behind the modal Settings dialog.<br/>
+                中文：修复设置窗口内“测试连接”状态一直卡住的问题。</li>
+            <li>1.0.1: Add the action to the Commit tool window toolbar (new UI), not only the context menu.<br/>
+                中文：除右键菜单外，在 Commit 工具窗工具栏也增加操作入口。</li>
+            <li>1.0.0: Initial release.<br/>
+                中文：首次发布。</li>
+        </ul>
+    ]]></change-notes>
+
+    <idea-version since-build="241" until-build="299.*"/>
+
+    <depends>com.intellij.modules.platform</depends>
+    <depends>com.intellij.modules.vcs</depends>
+
+    <extensions defaultExtensionNs="com.intellij">
+        <applicationService serviceImplementation="com.aicodereview.config.AiReviewSettings"/>
+        <projectService serviceImplementation="com.aicodereview.core.ReviewRunner"/>
+        <projectService serviceImplementation="com.aicodereview.history.ReviewHistoryService"/>
+        <applicationConfigurable id="com.aicodereview.settings"
+                                 displayName="AI Code Review"
+                                 instance="com.aicodereview.config.AiReviewConfigurable"/>
+        <notificationGroup id="AiCodeReview.Notifications" displayType="BALLOON"/>
+    </extensions>
+
+    <actions>
+        <action id="AiCodeReview.ReviewIncludedChanges"
+                class="com.aicodereview.action.ReviewChangesAction"
+                text="AI 审查勾选的更改"
+                description="用 AI 审查 Git 提交区中勾选的更改，并生成 Markdown 报告"
+                icon="/icons/review.svg">
+            <add-to-group group-id="Vcs.CheckinProjectToolbar" anchor="last"/>
+            <add-to-group group-id="ChangesView.CommitToolbar" anchor="last"/>
+            <add-to-group group-id="ToolsMenu" anchor="last"/>
+            <add-to-group group-id="ChangesViewPopupMenu" anchor="last"/>
+        </action>
+
+        <action id="AiCodeReview.ReviewHistory"
+                class="com.aicodereview.history.ReviewHistoryAction"
+                text="AI 审查历史"
+                description="查看本地留存的 AI 审查记录"
+                icon="/icons/ai-history.svg">
+            <add-to-group group-id="ChangesView.CommitToolbar" anchor="last"/>
+            <add-to-group group-id="ToolsMenu" anchor="last"/>
+        </action>
+
+        <action id="AiCodeReview.ReviewCommit"
+                class="com.aicodereview.action.ReviewCommitAction"
+                text="AI 审查此次提交"
+                description="用 AI 审查 Git 历史记录中选中的提交"
+                icon="/icons/review.svg">
+            <add-to-group group-id="Vcs.Log.ContextMenu" anchor="last"/>
+        </action>
+
+        <action id="AiCodeReview.FindingsFromReport"
+                class="com.aicodereview.review.ReviewFindingsFromReportAction"
+                text="AI 审查问题定位"
+                description="从当前 CODE_REVIEW.md 打开可点击的问题定位列表">
+            <add-to-group group-id="EditorPopupMenu" anchor="last"/>
+        </action>
+    </actions>
+</idea-plugin>

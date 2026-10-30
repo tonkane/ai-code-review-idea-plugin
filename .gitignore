@@ -1,0 +1,13 @@
+.gradle/
+.gradle-home/
+build/
+out/
+.idea/
+*.iml
+*.ipr
+*.iws
+.DS_Store
+CODE_REVIEW.md
+.intellijPlatform/
+dist/
+*.hprof

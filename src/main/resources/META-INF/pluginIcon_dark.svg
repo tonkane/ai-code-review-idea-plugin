@@ -1,0 +1,74 @@
+<svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="7" y1="3" x2="34" y2="38" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFF4DD"/>
+      <stop offset="1" stop-color="#F2BE78"/>
+    </linearGradient>
+    <linearGradient id="cat" x1="5" y1="8" x2="22" y2="37" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#262626"/>
+      <stop offset="1" stop-color="#070707"/>
+    </linearGradient>
+    <linearGradient id="lens" x1="21" y1="7" x2="35" y2="22" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#E8F8FF"/>
+      <stop offset="1" stop-color="#BCE8FA"/>
+    </linearGradient>
+    <linearGradient id="ring" x1="21" y1="7" x2="35" y2="22" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#6C8CFF"/>
+      <stop offset="1" stop-color="#3654D9"/>
+    </linearGradient>
+    <clipPath id="lensClip">
+      <circle cx="27.8" cy="14.2" r="6.8"/>
+    </clipPath>
+  </defs>
+
+  <rect x="2" y="2" width="36" height="36" rx="8" fill="url(#bg)"/>
+
+  <!-- tail and sitting body -->
+  <path d="M18.6 37.2C25.5 38.3 31.8 35.8 31.0 31.1C30.5 28.3 27.8 27.0 25.6 27.9" stroke="#0B0B0B" stroke-width="3.6" stroke-linecap="round"/>
+  <path d="M2.5 38C2.5 30.5 6.0 24.6 11.5 24.0C17.0 23.4 22.5 26.5 22.8 33.0V38H2.5Z" fill="url(#cat)"/>
+  <path d="M4.8 37.8V33.4C4.8 30.0 7.2 27.3 10.2 27.3C13.5 27.3 15.8 30.3 15.8 34.0V37.8H4.8Z" fill="#111111"/>
+
+  <!-- ears and chubby head, overlapping the body -->
+  <path d="M4.0 13.5L3.6 6.2L9.6 11.2L4.0 13.5Z" fill="#090909"/>
+  <path d="M14.2 11.0L19.3 6.2L19.8 13.4L14.2 11.0Z" fill="#090909"/>
+  <path d="M5.7 12.0L5.5 8.7L8.4 11.1L5.7 12.0Z" fill="#D47B8B" opacity="0.7"/>
+  <path d="M15.4 11.1L17.8 8.8L17.9 12.0L15.4 11.1Z" fill="#D47B8B" opacity="0.7"/>
+  <path d="M2.8 18.5C2.8 12.2 6.8 8.8 11.8 8.8C16.8 8.8 20.5 12.2 20.5 18.5C20.5 24.2 16.8 27.8 11.6 27.8C6.8 27.8 2.8 24.2 2.8 18.5Z" fill="url(#cat)"/>
+
+  <!-- eyes -->
+  <ellipse cx="7.9" cy="17.6" rx="2.25" ry="2.75" fill="#FFD45C"/>
+  <ellipse cx="15.2" cy="17.6" rx="2.25" ry="2.75" fill="#FFD45C"/>
+  <ellipse cx="7.9" cy="17.6" rx="0.7" ry="2.1" fill="#111111"/>
+  <ellipse cx="15.2" cy="17.6" rx="0.7" ry="2.1" fill="#111111"/>
+  <circle cx="7.25" cy="16.85" r="0.5" fill="#FFFFFF"/>
+  <circle cx="14.55" cy="16.85" r="0.5" fill="#FFFFFF"/>
+
+  <!-- nose, mouth, whiskers -->
+  <path d="M10.9 21.6H13.1L12.0 22.9L10.9 21.6Z" fill="#E9899D"/>
+  <!-- cat mouth: small vertical line from the nose, then an omega shape -->
+  <path d="M12.0 22.9V23.7M12.0 23.7C11.3 25.0 9.9 25.1 9.1 23.9M12.0 23.7C12.7 25.0 14.1 25.1 14.9 23.9" stroke="#4D2932" stroke-width="0.65" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M5.9 22.7L2.3 21.6M5.8 24.3L2.1 24.6M17.6 22.7L21.2 21.6M17.8 24.3L21.4 24.6" stroke="#6B4B4F" stroke-width="0.5" stroke-linecap="round" opacity="0.85"/>
+
+  <!-- raised paw holding the magnifier handle -->
+  <path d="M16.2 30.0C17.8 29.0 19.2 27.7 20.0 26.2" stroke="#111111" stroke-width="3.4" stroke-linecap="round"/>
+  <ellipse cx="20.1" cy="26.0" rx="2.5" ry="2.15" transform="rotate(-28 20.1 26.0)" fill="#0A0A0A"/>
+  <path d="M18.4 24.7L19.2 26.1M19.7 24.2L20.4 25.7M21.0 24.4L21.6 25.8" stroke="#3A3A3A" stroke-width="0.45" stroke-linecap="round"/>
+
+  <!-- magnifier handle under the paw -->
+  <path d="M22.1 20.7L19.2 27.3" stroke="#2D49C8" stroke-width="2.7" stroke-linecap="round"/>
+  <path d="M22.0 20.8L19.3 27.2" stroke="#6C8CFF" stroke-width="0.9" stroke-linecap="round" opacity="0.8"/>
+
+  <!-- magnifier lens -->
+  <circle cx="27.8" cy="14.2" r="7.9" fill="url(#ring)"/>
+  <circle cx="27.8" cy="14.2" r="6.8" fill="url(#lens)"/>
+  <g clip-path="url(#lensClip)">
+    <path d="M24.3 11.3L21.9 14.2L24.3 17.1" stroke="#2E63C7" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M31.3 11.3L33.7 14.2L31.3 17.1" stroke="#2E63C7" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M29.2 10.8L26.4 17.6" stroke="#2E63C7" stroke-width="1.15" stroke-linecap="round"/>
+    <path d="M20.2 9.0C23.0 6.8 27.1 6.4 30.3 8.2" stroke="#FFFFFF" stroke-width="1.1" stroke-linecap="round" opacity="0.8"/>
+  </g>
+  <circle cx="27.8" cy="14.2" r="7.9" stroke="#2741B8" stroke-width="0.7"/>
+
+  <!-- whisker highlights -->
+  <path d="M6.2 30.0C8.4 28.9 11.0 28.9 13.3 30.0" stroke="#3A3A3A" stroke-width="0.55" stroke-linecap="round" opacity="0.65"/>
+</svg>
